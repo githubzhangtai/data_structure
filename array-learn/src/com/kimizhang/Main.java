@@ -1,7 +1,5 @@
 package com.kimizhang;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
@@ -10,8 +8,10 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             array.addLast(i);
         }
-        array.add(1,5);
+        array.add(4,55);
+        array.add(5,55);
         System.out.println(array.toString());
-        System.out.println(array.get(3));
+        array.removeAllElement(55);
+        System.out.println(array.toString());
     }
 }

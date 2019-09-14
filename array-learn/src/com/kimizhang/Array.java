@@ -90,17 +90,114 @@ public class Array {
      * @return
      */
     public int get(int index){
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Get failed. Index is illegal.");
         }
         return data[index];
     }
 
     public void set(int index,int e){
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Set failed. Index is illegal.");
         }
         data[index] = e;
+    }
+
+    /**
+     * 判断数组中是否存在元素 e
+     * @param e 元素e
+     * @return boolean
+     */
+    public boolean contains(int e){
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 查看第一个元素 e 的索引,如果不存在，则返回 -1
+     * @param e 元素 e
+     * @return 索引的位置
+     */
+    public int find(int e){
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e){
+                return i;
+            }
+        }
+        return Constants.NEGATIVE_ONE;
+    }
+
+    public Array findAll(int e){
+        if (find(e) == Constants.NEGATIVE_ONE){
+            throw new IllegalArgumentException("没有找到元素");
+        }
+        Array array = new Array(size);
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e){
+                array.addLast(i);
+            }
+        }
+        return array;
+    }
+
+    /**
+     * 删除一个元素
+     * @param index 待删除的元素的索引
+     * @return 被删除的元素
+     */
+    public int remove(int index){
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Remove failed. Index is illegal.");
+        }
+        int res = data[index];
+        for (int i = index; i < size; i++) {
+            data[i] = data[i + 1];
+        }
+        size--;
+        return res;
+    }
+
+    /**
+     * 删除第一个元素
+     * @return 被删除的元素
+     */
+    public int removeFirst(){
+        return remove(0);
+    }
+
+    /**
+     * 删除最后一个元素
+     * @return 被删除的元素
+     */
+    public int removeLast(){
+        return remove(size -1);
+    }
+
+    /**
+     * 移除数组中第一个 e 元素
+     * @param e
+     */
+    public void removeElement(int e){
+        int index = find(e);
+        if (index != Constants.NEGATIVE_ONE) {
+            remove(index);
+        }
+    }
+
+    /**
+     * 移除数组中所有元素 e
+     * @param e
+     */
+    public void removeAllElement(int e){
+        Array all = findAll(e);
+        for (int i = 0 ; i < all.size ; i ++){
+            removeElement(e);
+        }
+
     }
 
     @Override
