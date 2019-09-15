@@ -155,11 +155,16 @@ public class Array<E> {
             throw new IllegalArgumentException("Remove failed. Index is illegal.");
         }
         E res = data[index];
-        for (int i = index; i < size; i++) {
-            data[i] = data[i + 1];
+        for (int i = index + 1; i < size ; i++) {
+            data[i - 1] = data[i];
         }
         size--;
-        data[size] = null; /*loitering objects 此句没有实际业务作用；用于java垃圾回收*/
+        /*loitering objects 此句没有实际业务作用；用于java垃圾回收*/
+        data[size] = null;
+        /*当数组删除了一般，数组的容量自动减少*/
+        if (size == data.length / 2){
+            resize(data.length / 2);
+        }
         return res;
     }
 
