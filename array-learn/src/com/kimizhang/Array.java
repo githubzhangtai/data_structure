@@ -71,11 +71,12 @@ public class Array<E> {
      * @param e 要插入的元素
      */
     public void add(int index,E e){
-        if (size == data.length){
-            throw new IllegalArgumentException("Add failed. Array is full");
-        }
         if (index <0 || index > size){
             throw new IllegalArgumentException("Add failed. 数组下标越界");
+        }
+        /*如果数组满了，扩容为原来的2倍*/
+        if (size == data.length){
+            resize(2 * data.length);
         }
         for (int i = size-1;i >= index ;i--){
             data[i + 1] = data[i];
@@ -216,5 +217,12 @@ public class Array<E> {
         return res.toString();
     }
 
+    private void resize(int newCapacity){
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size ; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
+    }
 
 }
