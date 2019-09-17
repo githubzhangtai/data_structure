@@ -97,6 +97,22 @@ public class Array<E> {
         return data[index];
     }
 
+    /**
+     * 获取最后一个元素
+     * @return 最后一个元素
+     */
+    public E getLast(){
+        return get(size -1);
+    }
+
+    /**
+     * 获取第一个元素
+     * @return 第一个元素
+     */
+    public E getFirst(){
+        return get(0);
+    }
+
     public void set(int index,E e){
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Set failed. Index is illegal.");
