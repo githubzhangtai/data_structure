@@ -161,8 +161,12 @@ public class Array<E> {
         size--;
         /*loitering objects 此句没有实际业务作用；用于java垃圾回收*/
         data[size] = null;
-        /*当数组删除了一般，数组的容量自动减少*/
-        if (size == data.length / 2){
+        /*190916_当数组删除了一半，数组的容量自动减少（请继续看下一行注释）
+        * 190917_避免复杂度震荡，实现lazy机制：
+        *                        ①数组size变为原来的一半的时候不要着急缩容；
+        *                        ②当size变为原来的 1/4 的时候才缩容；
+        * */
+        if (size == data.length/4 && data.length/2 != 0){
             resize(data.length / 2);
         }
         return res;
