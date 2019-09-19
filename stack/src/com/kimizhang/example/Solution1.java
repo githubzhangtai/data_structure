@@ -9,7 +9,7 @@ package com.kimizhang.example;
  * @author Kimi
  * @date 2019/9/18
  */
-public class Solution {
+public class Solution1 {
     public boolean isValid(String s) {
         char[] stack = new char[s.length()];
         int top = -1;
