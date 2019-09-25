@@ -13,10 +13,10 @@ public class ArrayStack<E> implements Stack<E> {
 
     /**
      * 带参构造函数
-     * @param capacityy
+     * @param capacity
      */
-    public ArrayStack(int capacityy) {
-        this.array = new Array<>(capacityy);
+    public ArrayStack(int capacity) {
+        this.array = new Array<>(capacity);
     }
 
     /**
