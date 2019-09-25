@@ -56,14 +56,14 @@ public class ArrayQueue<E> implements Queue<E> {
     public String toString() {
         StringBuilder res = new StringBuilder();
         res.append("Queue: ");
-        res.append("front[");
+        res.append("front [");
         for (int i = 0; i < array.getSize(); i++) {
             res.append(array.get(i));
             if (i != array.getSize() - 1){
                 res.append(", ");
             }
         }
-        res.append("]");
+        res.append("] tail");
         return res.toString();
     }
 }
