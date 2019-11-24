@@ -1,3 +1,5 @@
+import java.lang.String;
+
 /**
  * 链表
  * @author Kimi
@@ -90,4 +92,80 @@ public class LinkedList<E> {
         add(size,e);
     }
 
+    /**
+     * 获取链表的第 index 个元素。
+     * 注：这是在链表中不常用的一个操作，用到索引的话，建议之际用数组而不是用链表
+     * @param index
+     * @return
+     */
+    public E get(int index){
+        if(index < 0 || index >= size){
+            throw new IllegalArgumentException("获取失败，下标越界!");
+        }
+        // 从第一个元素遍历到 index 位置的元素
+        Node cur = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
+        return cur.e;
+    }
+
+    /**
+     * 获取链表的第一个元素
+     * @return
+     */
+    public E getFirst(){
+        return get(0);
+    }
+
+    /**
+     * 获取连边的最后一个元素
+     * @return
+     */
+    public E getLast(){
+        return get(size -1);
+    }
+
+    /**
+     * 更新 index 位置的元素为新传进来的 e
+     * @param index
+     * @param e
+     */
+    public void update(int index,E e){
+        if(index < 0 || index >= size){
+            throw new IllegalArgumentException("获取失败，下标越界!");
+        }
+        // 从第一个元素遍历到 index 位置的元素
+        Node cur = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
+        cur.e = e;
+    }
+
+    /**
+     * 查看链表中是否存在元素 e
+     * @param e
+     * @return
+     */
+    public boolean contains(E e){
+        for (int i = 0; i < size; i++) {
+            if (get(i).equals(e)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        Node cur = dummyHead.next;
+        while (cur != null){
+            res.append(cur + "->");
+            cur = cur.next;
+        }
+        res.append("NULL");
+        return res.toString();
+    }
 }
