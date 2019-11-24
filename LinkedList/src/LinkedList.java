@@ -1,9 +1,13 @@
 /**
+ * 链表
  * @author Kimi
  * @date 2019/11/4
  */
 public class LinkedList<E> {
-    private Node head;
+    /**
+     * 第一个节点之前的虚拟节点
+     */
+    private Node dummyHead;
     private int size;
 
     private class Node{
@@ -33,7 +37,7 @@ public class LinkedList<E> {
      * 无参构造函数
      */
     public LinkedList(){
-        head = null;
+        dummyHead = new Node(null,null);
         size = 0;
     }
 
@@ -52,15 +56,6 @@ public class LinkedList<E> {
     }
 
     /**
-     * 在链表头添加新的元素
-     * @param e 新的元素
-     */
-    public void addFirst(E e){
-        head = new Node(e,head);
-        size++;
-    }
-
-    /**
      * 在链表指定位置添加元素
      * @param index 指定位置
      * @param e 要添加的元素
@@ -69,18 +64,22 @@ public class LinkedList<E> {
         if (index < 0 || index > size){
             throw new IllegalArgumentException("Add failed.Illegal index.");
         }
-        if (index == 0){
-            addFirst(e);
-        }else {
-            Node prev = head;
-            for (int i = 0; i < index - 1; i++) {
+            Node prev = dummyHead;
+            for (int i = 0; i < index; i++) {
                 prev = prev.next;
             }
             Node node = new Node(e,prev.next);
             prev.next = node;
 
             size++;
-        }
+    }
+
+    /**
+     * 在链表头添加新的元素
+     * @param e 新的元素
+     */
+    public void addFirst(E e){
+        add(0,e);
     }
 
     /**
@@ -90,6 +89,5 @@ public class LinkedList<E> {
     public void addLast(E e){
         add(size,e);
     }
-
 
 }
