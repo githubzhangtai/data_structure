@@ -2,6 +2,12 @@ import java.lang.String;
 
 /**
  * 链表
+ * 时间复杂度：添加 -> O(n)
+ *             删除 -> O(n)
+ *             修改 -> O(n)
+ *             查找 -> O(n)
+ *        总结：链表只添加头，只删除头，只查询查询头的复杂度为O(1)
+ *        链表的优势在于：动态性和不浪费内存
  * @author Kimi
  * @date 2019/11/4
  */
@@ -66,6 +72,7 @@ public class LinkedList<E> {
         if (index < 0 || index > size){
             throw new IllegalArgumentException("Add failed.Illegal index.");
         }
+            // 从虚拟头节点遍历到 index 位置前一个元素
             Node prev = dummyHead;
             for (int i = 0; i < index; i++) {
                 prev = prev.next;
@@ -166,16 +173,18 @@ public class LinkedList<E> {
         if(index < 0 || index >= size){
             throw new IllegalArgumentException("获取失败，下标越界!");
         }
+        // 从虚拟头节点遍历到 index 位置前一个元素
         Node pre = dummyHead;
-        // 从第一个元素遍历到 index 位置的元素
-        Node cur = dummyHead.next;
         for (int i = 0; i < index; i++) {
-            pre = cur;
-            cur = cur.next;
+            pre = pre.next;
         }
-        pre.next = cur.next;
+        // 待删除的节点
+        Node retNode = pre.next;
+        pre.next = retNode.next;
+        // 将待删除节点置空
+        retNode.next = null;
         size --;
-        return cur.e;
+        return retNode.e;
     }
 
     /**
