@@ -157,6 +157,52 @@ public class LinkedList<E> {
         return false;
     }
 
+    /**
+     * 删除指定位置的元素
+     * @param index
+     * @return
+     */
+    public E delete(int index){
+        if(index < 0 || index >= size){
+            throw new IllegalArgumentException("获取失败，下标越界!");
+        }
+        Node pre = dummyHead;
+        // 从第一个元素遍历到 index 位置的元素
+        Node cur = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            pre = cur;
+            cur = cur.next;
+        }
+        pre.next = cur.next;
+        size --;
+        return cur.e;
+    }
+
+    /**
+     * 删除第一个元素
+     */
+    public void deleteFirst(){
+        delete(0);
+    }
+
+    /**
+     * 删除最后一个元素
+     */
+    public void deteleLast(){
+        delete(size - 1);
+    }
+
+    /**
+     * 删除全部元素
+     */
+    public void deleteAll(){
+        int capacity = size ;
+        for (int i = 0; i < capacity  ; i++){
+           deleteFirst();
+        }
+    }
+
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
