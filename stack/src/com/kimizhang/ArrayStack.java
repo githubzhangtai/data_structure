@@ -1,7 +1,8 @@
 package com.kimizhang;
 
 /**
- * 栈实现方法
+ * 用数组的方式实现栈
+ * 数组栈和链表栈（LinkedListStack）的时间复杂度均为O(1)
  * @author Kimi
  * @date 2019/9/17
  */
@@ -13,7 +14,7 @@ public class ArrayStack<E> implements Stack<E> {
 
     /**
      * 带参构造函数
-     * @param capacity
+     * @param capacity 栈容量
      */
     public ArrayStack(int capacity) {
         this.array = new Array<>(capacity);
