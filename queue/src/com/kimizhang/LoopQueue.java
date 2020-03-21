@@ -1,6 +1,7 @@
 package com.kimizhang;
 
 /**
+ * 数组循环队列
  * @author Kimi
  * @date 2019/10/9
  */

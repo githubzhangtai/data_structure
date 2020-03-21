@@ -1,6 +1,7 @@
 package com.kimizhang;
 
 /**
+ * 用数组的方式实现队列
  * @author Kimi
  * @date 2019/9/25
  */
