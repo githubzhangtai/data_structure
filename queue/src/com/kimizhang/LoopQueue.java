@@ -2,6 +2,7 @@ package com.kimizhang;
 
 /**
  * 数组循环队列
+ * 时间复杂度O（1）
  * @author Kimi
  * @date 2019/10/9
  */
